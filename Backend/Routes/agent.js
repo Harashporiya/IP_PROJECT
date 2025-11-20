@@ -1,15 +1,18 @@
 const express = require("express");
-const { 
-  agentCreateInput, 
-  clearChatHistory,
-  getConversationStats 
-} = require("../Controllers/agent");
-const { isAuthenticated } = require("../middleware/auth");
 const router = express.Router();
+const chatController = require("../Controllers/agent");
+const { 
+  validateChatRequest, 
+  validateBatchRequest 
+} = require("../middleware/validation.middleware");
 
-router.post("/agent", isAuthenticated, agentCreateInput);
-router.post("/agent/clear-history", isAuthenticated, clearChatHistory);
-// router.post("/agent/stats", isAuthenticated, getConversationStats); // Changed to POST
+// Health check
+router.get("/health", chatController.healthCheck);
+
+// Chat endpoint
+router.post("/chat", validateChatRequest, chatController.chat);
+
+// Batch chat endpoint
+router.post("/chat/batch", validateBatchRequest, chatController.batchChat);
 
 module.exports = router;
-
