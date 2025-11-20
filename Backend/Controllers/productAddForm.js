@@ -3,6 +3,8 @@ const multer = require("multer");
 const {uploadToCloudinary, deleteFromCloudinary} = require("../Config/cloudinary");
 const Cart = require("../Model/cartProductAdd");
 const storage = multer.memoryStorage()
+const { syncProductToPinecone } = require("../Config/pineconeSync");
+const { deleteProductFromPinecone } = require("../Config/pineconeSync");
 
 const upload = multer({
     storage: storage,
@@ -93,6 +95,7 @@ exports.createProduct = async (req, res) => {
                 newAmount,
                 userId:req.user._id
             })
+            await syncProductToPinecone(createProduct);
 
             return res.status(201).json({ message: "Product created successful!", product: createProduct });
         }
@@ -113,7 +116,7 @@ exports.createProduct = async (req, res) => {
                 newAmount,
                 userId:req.user._id
             })
-
+             await syncProductToPinecone(createProduct);
             return res.status(201).json({ message: "Product created successful!", product: createProduct });
         }
 
@@ -272,6 +275,7 @@ exports.productDeleteById = async (req, res) => {
         }
 
         await product.deleteOne();
+          await deleteProductFromPinecone(product._id);
 
         return res.status(200).json({success:true, message: "Product delete successfull" })
     } catch (error) {
@@ -344,6 +348,7 @@ exports.updateProduct = async (req, res) => {
                 userId:req.user._id,
                 
             },{new: true, runValidators: true}).populate("userId","name");
+           await syncProductToPinecone(updateProduct);
 
             return res.status(200).json({success:true, message: "Product update successfull", updateProduct })
         }
@@ -365,6 +370,7 @@ exports.updateProduct = async (req, res) => {
                 userId:req.user._id,
                 
             },{new: true, runValidators: true}).populate("userId","name");
+           await syncProductToPinecone(updateProduct);
 
             return res.status(200).json({success:true, message: "Product update successfull", updateProduct })
         }
