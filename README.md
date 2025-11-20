@@ -4,32 +4,9 @@
 > A modern e-commerce platform designed specifically for college students, featuring seamless shopping experience with real-time chat, AI-powered product search, and secure payment integration.
 
 [![Live Demo](https://img.shields.io/badge/demo-online-green.svg)](https://college-cart.netlify.app)
-[![GitHub](https://img.shields.io/badge/github-repo-blue.svg)](https://github.com/Harashporiya/college-cart)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![GitHub](https://img.shields.io/badge/github-repo-blue.svg)](https://github.com/Harashporiya/IP_PROJECT)
 
 ---
-
-## Table of Contents
-
-- [About The Project](#about-the-project)
-- [Features](#features)
-- [AI Technology](#ai-technology)
-- [Tech Stack](#tech-stack)
-- [Prerequisites](#prerequisites)
-- [Installation](#installation)
-- [Environment Variables](#environment-variables)
-- [Usage](#usage)
-- [Project Structure](#project-structure)
-- [API Documentation](#api-documentation)
-- [Screenshots](#screenshots)
-- [Roadmap](#roadmap)
-- [Contributing](#contributing)
-- [License](#license)
-- [Contact](#contact)
-- [Acknowledgments](#acknowledgments)
-
----
-
 ## About The Project
 
 College Cart is a specialized e-commerce platform built to address the unique needs of college students. It provides an intuitive shopping experience combined with cutting-edge AI technology for smart product discovery and real-time communication features.
