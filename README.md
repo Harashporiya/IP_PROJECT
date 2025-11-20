@@ -1,6 +1,5 @@
 # IP_PROJECT
 # College Cart
-# College Cart
 
 > A modern e-commerce platform designed specifically for college students, featuring seamless shopping experience with real-time chat, AI-powered product search, and secure payment integration.
 
