@@ -6,14 +6,13 @@ const pinecone = new Pinecone({ apiKey: process.env.PINECONE_API_KEY });
 const index = pinecone.index(process.env.PINECONE_INDEX_NAME);
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
-// ----------- Generate Embedding -----------
 async function generateEmbedding(text) {
   const model = genAI.getGenerativeModel({ model: "text-embedding-004" });
   const result = await model.embedContent(text);
   return result.embedding.values;
 }
 
-// ----------- CREATE / UPDATE -----------
+
 async function syncProductToPinecone(product) {
   const vectorText = `
     Name: ${product.name}
@@ -47,22 +46,14 @@ async function syncProductToPinecone(product) {
         newAmount: product.newAmount,
         image: product.image,
         description: product.description,
-        // userId: product.userId,
-        // quantity: product.quantity,
-        // stock: product.stock,
-        // createdAt: product.createdAt,
-        // updatedAt: product.updatedAt,
       },
     },
   ]);
-
-  console.log("🔼 Pinecone → Product synced:", product._id);
 }
 
-// ----------- DELETE -----------
+
 async function deleteProductFromPinecone(productId) {
   await index.deleteOne(`product-${productId}`);
-  console.log("❌ Pinecone → Product deleted:", productId);
 }
 
 module.exports = {
