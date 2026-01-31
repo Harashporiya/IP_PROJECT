@@ -1,13 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { setToken, removeToken, getToken } from "../../util/tokenService"
+
 const initialState = {
     user: null,
     token: getToken(),
     status: null,
     error: null,
     message: null,
-    isLoading:false,
-    product:null
+    isLoading: false,
+    product: null,
+    cartItems: [] 
 }
 
 const Slice = createSlice({
@@ -15,231 +17,231 @@ const Slice = createSlice({
     initialState,
     reducers: {
         signUpUser: (state) => {
-            state.status = 'loading',
-            state.isLoading = true,
-            state.error = null,
+            state.status = 'loading'
+            state.isLoading = true
+            state.error = null
             state.message = null
         },
         signInUser: (state) => {
-            state.status = 'loading',
-            state.isLoading = true,
-            state.error = null,
+            state.status = 'loading'
+            state.isLoading = true
+            state.error = null
             state.message = null
         },
         signUpUserSuccess: (state, action) => {
-            state.status = 'success',
-            state.isLoading = false;
-            state.user = action.payload.user,
-            state.token = action.payload.token,
-            state.message = action.payload.message,
-            state.error = null
-        },
-        signUpUserFailed: (state, action) => {
-            state.status = 'failed',
-            state.isLoading = false,
-            state.user = null,
-            state.token = null,
-            state.message = action.payload.message,
-            state.error = action.payload.error
-        },
-        signInUserSuccess: (state, action) => {
-            state.status = 'success',
-            state.isLoading = false;
-            const token = action.payload.token;
-            setToken(token);
-            state.user = action.payload.user,
-            state.token = token;
+            state.status = 'success'
+            state.isLoading = false
+            state.user = action.payload.user
+            state.token = action.payload.token
             state.message = action.payload.message
             state.error = null
         },
-        signInUserFailed: (state, action) => {
-            state.status = 'failed',
-            state.isLoading = false,
-            state.user = null,
-            state.token = null,
-            state.message = action.payload.message,
+        signUpUserFailed: (state, action) => {
+            state.status = 'failed'
+            state.isLoading = false
+            state.user = null
+            state.token = null
+            state.message = action.payload.message
             state.error = action.payload.error
         },
-        emailVerify:(state)=>{
-            state.status = 'loading',
-            state.isLoading = true,
-            state.error = null,
-            state.message = null
-        },
-        emailVerifySuccess:(state,action)=>{
-            state.status = 'success',
-            state.isLoading = false;
-            const token = action.payload.token;
-            setToken(token);
-            state.user = action.payload.user,
+        signInUserSuccess: (state, action) => {
+            state.status = 'success'
+            state.isLoading = false
+            const token = action.payload.token
+            setToken(token)
+            state.user = action.payload.user
             state.token = token
             state.message = action.payload.message
             state.error = null
         },
-        emailVerifyFailed:(state, action)=>{
-            state.status = 'failed',
-            state.isLoading = false,
-            state.user = null,
-            state.token = null,
-            state.message = action.payload.message,
+        signInUserFailed: (state, action) => {
+            state.status = 'failed'
+            state.isLoading = false
+            state.user = null
+            state.token = null
+            state.message = action.payload.message
             state.error = action.payload.error
         },
-        forGotPassword:(state)=>{
-            state.status = 'loading',
-            state.isLoading = true,
-            state.error = null,
+        emailVerify: (state) => {
+            state.status = 'loading'
+            state.isLoading = true
+            state.error = null
             state.message = null
         },
-        forGotPasswordSuccess:(state,action)=>{
-            state.status = 'success',
-            state.isLoading = false,
-            state.user = action.payload.user,
+        emailVerifySuccess: (state, action) => {
+            state.status = 'success'
+            state.isLoading = false
+            const token = action.payload.token
+            setToken(token)
+            state.user = action.payload.user
+            state.token = token
             state.message = action.payload.message
             state.error = null
         },
-        forGotPasswordFailed:(state,action)=>{
-            state.status = 'failed',
-            state.isLoading = false,
-            state.user = null,
-            state.message = action.payload.message,
+        emailVerifyFailed: (state, action) => {
+            state.status = 'failed'
+            state.isLoading = false
+            state.user = null
+            state.token = null
+            state.message = action.payload.message
             state.error = action.payload.error
         },
-        emailveirfyForgotpassword:(state)=>{
-            state.status = 'loading',
-            state.isLoading = true,
-            state.error = null,
+        forGotPassword: (state) => {
+            state.status = 'loading'
+            state.isLoading = true
+            state.error = null
             state.message = null
         },
-        emailveirfyForgotpasswordSuccess:(state,action)=>{
-            state.status = 'success',
-            state.isLoading = false,
-            state.user = action.payload.user,
+        forGotPasswordSuccess: (state, action) => {
+            state.status = 'success'
+            state.isLoading = false
+            state.user = action.payload.user
             state.message = action.payload.message
             state.error = null
         },
-        emailveirfyForgotpasswordFailed:(state,action)=>{
-            state.status = 'failed',
-            state.isLoading = false,
-            state.user = null,
-            state.message = action.payload.message,
+        forGotPasswordFailed: (state, action) => {
+            state.status = 'failed'
+            state.isLoading = false
+            state.user = null
+            state.message = action.payload.message
             state.error = action.payload.error
         },
-        newPasswordSet:(state)=>{
-            state.status = 'loading',
-            state.isLoading = true,
-            state.error = null,
+        emailveirfyForgotpassword: (state) => {
+            state.status = 'loading'
+            state.isLoading = true
+            state.error = null
             state.message = null
         },
-        newPasswordSetSuccess:(state,action)=>{
-            state.status = 'success',
-            state.isLoading = false,
-            state.user = action.payload.user,
+        emailveirfyForgotpasswordSuccess: (state, action) => {
+            state.status = 'success'
+            state.isLoading = false
+            state.user = action.payload.user
             state.message = action.payload.message
             state.error = null
         },
-        newPasswordSetFailed:(state,action)=>{
-            state.status = 'failed',
-            state.isLoading = false,
-            state.user = null,
-            state.message = action.payload.message,
+        emailveirfyForgotpasswordFailed: (state, action) => {
+            state.status = 'failed'
+            state.isLoading = false
+            state.user = null
+            state.message = action.payload.message
+            state.error = action.payload.error
+        },
+        newPasswordSet: (state) => {
+            state.status = 'loading'
+            state.isLoading = true
+            state.error = null
+            state.message = null
+        },
+        newPasswordSetSuccess: (state, action) => {
+            state.status = 'success'
+            state.isLoading = false
+            state.user = action.payload.user
+            state.message = action.payload.message
+            state.error = null
+        },
+        newPasswordSetFailed: (state, action) => {
+            state.status = 'failed'
+            state.isLoading = false
+            state.user = null
+            state.message = action.payload.message
             state.error = action.payload.error
         },
         resetState: (state) => {
-            state.status = null;
-            state.message = null;
-            state.error = null;
-          },
-
-          logout: (state) => {
-            removeToken();
+            state.status = null
+            state.message = null
+            state.error = null
+        },
+        logout: (state) => {
+            removeToken()
             state.status = 'success'
-            state.token = null;
-            state.user = null;
-          },
-        profileEditUser:(state)=>{
-            state.status = 'loading',
-            state.isLoading = true,
-            state.error = null,
+            state.token = null
+            state.user = null
+        },
+        profileEditUser: (state) => {
+            state.status = 'loading'
+            state.isLoading = true
+            state.error = null
             state.message = null
         },
-        profileEditUserSuccess:(state,action)=>{
-            state.status = 'success',
-            state.isLoading = false,
-            state.user = action.payload.user,
+        profileEditUserSuccess: (state, action) => {
+            state.status = 'success'
+            state.isLoading = false
+            state.user = action.payload.user
             state.message = action.payload.message
             state.error = null
-        } ,
-        profileEditUserFailed:(state,action)=>{
-            state.status = 'failed',
-            state.isLoading = false,
-            state.user = null,
-            state.message = action.payload.message,
+        },
+        profileEditUserFailed: (state, action) => {
+            state.status = 'failed'
+            state.isLoading = false
+            state.user = null
+            state.message = action.payload.message
             state.error = action.payload.error
         },
-        productNew:(state)=>{
-            state.status = 'loading',
-            state.isLoading = true,
-            state.error = null,
+        productNew: (state) => {
+            state.status = 'loading'
+            state.isLoading = true
+            state.error = null
             state.message = null
         },
-        productNewCreateSuccess:(state, action)=>{
-            state.status = 'success',
-            state.isLoading = false,
-            state.product = action.payload.product,
+        productNewCreateSuccess: (state, action) => {
+            state.status = 'success'
+            state.isLoading = false
+            state.product = action.payload.product
             state.message = action.payload.message
             state.error = null
         },
-        productNewCreateFailed:(state,action)=>{
-            state.status = 'failed',
-            state.isLoading = false,
-            state.product = null,
-            state.message = action.payload.message,
+        productNewCreateFailed: (state, action) => {
+            state.status = 'failed'
+            state.isLoading = false
+            state.product = null
+            state.message = action.payload.message
             state.error = action.payload.error
         },
         fetchProductDetails: (state) => {
-            state.status = "loading";
-            state.isLoading = true;
-            state.error = null;
+            state.status = "loading"
+            state.isLoading = true
+            state.error = null
         },
         productDetailsSuccess: (state, action) => {
-            state.status = "success";
-            state.isLoading = false;
-            state.product = action.payload;
+            state.status = "success"
+            state.isLoading = false
+            state.product = action.payload
         },
         productDetailsFailed: (state, action) => {
-            state.status = "failed";
-            state.isLoading = false;
-            state.error = action.payload.error;
+            state.status = "failed"
+            state.isLoading = false
+            state.error = action.payload.error
         },
-        cartAdd:(state)=>{
-            state.status = "loading";
-            state.isLoading = true;
-            state.error = null;
+        cartAdd: (state) => {
+            state.status = "loading"
+            state.isLoading = true
+            state.error = null
         },
         cartAddSuccess: (state, action) => {
-            state.status = "success";
-            state.isLoading = false;
-            state.product = action.payload;
+            state.status = "success"
+            state.isLoading = false
+            state.cartItems = action.payload.item || action.payload.items || state.cartItems
+            state.message = action.payload.message
         },
         cartAddFailed: (state, action) => {
-            state.status = "failed";
-            state.isLoading = false;
-            state.error = action.payload.error;
+            state.status = "failed"
+            state.isLoading = false
+            state.error = action.payload.error
         },
-        allCartProduct:(state)=>{
-            state.status = "loading";
-            state.isLoading = true;
-            state.error = null;
+        allCartProduct: (state) => {
+            state.status = "loading"
+            state.isLoading = true
+            state.error = null
         },
-        allCartProductSuccess:(state, action)=>{
-            state.status = "success";
-            state.isLoading = false;
-            state.product = action.payload;
+        allCartProductSuccess: (state, action) => {
+            state.status = "success"
+            state.isLoading = false
+            state.cartItems = action.payload.item || action.payload.items || []
         },
-        allCartProductFalied:(state, action)=>{
-            state.status = "failed";
-            state.isLoading = false;
-            state.error = action.payload.error;
+        allCartProductFalied: (state, action) => {
+            state.status = "failed"
+            state.isLoading = false
+            state.error = action.payload.error
         }
     }
 })
@@ -280,6 +282,6 @@ export const {
     allCartProduct,
     allCartProductFalied,
     allCartProductSuccess
-} = Slice.actions;
+} = Slice.actions
 
-export default Slice.reducer;
+export default Slice.reducer
