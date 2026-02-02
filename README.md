@@ -133,10 +133,11 @@ assistance.
 - Socket.io (Real-time Chat)
 - Cloudinary (Image Uploads)
 - Nodemailer (Email Notifications)
-- Groq API (AI Assistant)
+- Google Gemini API (AI Assistant)
 
 ### Deployment
-- Netlify
+- Frontend deploy in Netlify
+- Backend deploy in render
 
 ------------------------------------------------------------------------
 
@@ -144,21 +145,23 @@ assistance.
 
 1. **Clone the repository**
    \`\`\`bash
-   git clone https://github.com/your-username/college-cart.git
+  git clone https://github.com/Harashporiya/IP_PROJECT.git
    \`\`\`
 
 2. **Navigate to the directory**
    \`\`\`bash
-   cd college-cart
+   cd IP_PROJECT
    \`\`\`
 
-3. **Install dependencies**
+3. **Install dependencies in Frontend**
    \`\`\`bash
+   cd college-cart
    npm install
    \`\`\`
 
-4. **Start the development server**
+5. **Start the development server**
    \`\`\`bash
+   cd backend
    npm start
    \`\`\`
 
