@@ -11,8 +11,11 @@ import Grocery from './Category/Grocery/Grocery';
 import { useNavigate } from 'react-router-dom';
 import { UserDataContext } from '../Header/context';
 import Chatbot from '../Chatbot';
+import { getToken } from '../../util/tokenService';
 
 const Home = () => {
+  const token = localStorage.getItem("token")
+  console.log(token)
   const navigate = useNavigate()
   const { data } = useContext(UserDataContext)
   useEffect(() => {
@@ -87,7 +90,9 @@ const Home = () => {
         </div>
       </div>
       <Footer />
-      <Chatbot/>
+      {
+        token ? <Chatbot/>:""
+      }
     </>
   );
 };
