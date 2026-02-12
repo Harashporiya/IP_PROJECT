@@ -1,6 +1,6 @@
 const { HumanMessage, SystemMessage } = require("@langchain/core/messages");
-const { vectorStore, model, SYSTEM_PROMPT } = require("../Config/langchain.config");
-
+const { vectorStore, model } = require("../Config/langchain.config");
+const { SYSTEM_PROMPT } = require("../Config/systemprompts");
 
 function detectQueryType(query) {
   const q = query.toLowerCase();
