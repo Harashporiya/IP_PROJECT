@@ -14,8 +14,6 @@ import Chatbot from '../Chatbot';
 import { getToken } from '../../util/tokenService';
 
 const Home = () => {
-  const token = localStorage.getItem("token")
-  console.log(token)
   const navigate = useNavigate()
   const { data } = useContext(UserDataContext)
   useEffect(() => {
@@ -90,9 +88,7 @@ const Home = () => {
         </div>
       </div>
       <Footer />
-      {
-        token ? <Chatbot/>:""
-      }
+      <Chatbot/>
     </>
   );
 };
