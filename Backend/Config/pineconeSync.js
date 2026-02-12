@@ -7,7 +7,7 @@ const index = pinecone.index(process.env.PINECONE_INDEX_NAME);
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 async function generateEmbedding(text) {
-  const model = genAI.getGenerativeModel({ model: "text-embedding-004" });
+  const model = genAI.getGenerativeModel({ model: "gemini-embedding-001" });
   const result = await model.embedContent(text);
   return result.embedding.values;
 }
